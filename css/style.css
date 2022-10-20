@@ -41,7 +41,7 @@ body {
   background-size: cover;
   background-position: top;
   /* whatever the viewport is, top of the image will be stick to the top of browser */
-  clip-path: polygon(0 0, 100% 0, 100% 75vhgit, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   position: relative;
 }
 
@@ -64,6 +64,7 @@ body {
   /* powyższe względem rodzica */
   transform: translate(-50%, -50%);
   /* tutaj wyśrodkowanie samego elementu */
+  text-align: center;
 }
 
 .heading-primary {
@@ -72,6 +73,7 @@ body {
 
   backface-visibility: hidden;
   /* only IF animation shakes by the end. Need to be written inside of the parent elm */
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -130,4 +132,32 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+.btn:link,
+.btn:visited {
+  /* editing pseudo classes from btn */
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  /* because it's an inline element, we have to change it to inline-block if we want to apply padding or width */
+  border-radius: 100px;
+  transition: all 0.2s;
+  /* transition property need to be in initial state */
+  /* all property are able to be animated */
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
 }
