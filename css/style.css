@@ -134,6 +134,18 @@ body {
   }
 }
 
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .btn:link,
 .btn:visited {
   /* editing pseudo classes from btn */
@@ -146,6 +158,7 @@ body {
   transition: all 0.2s;
   /* transition property need to be in initial state */
   /* all property are able to be animated */
+  position: relative;
 }
 
 .btn:hover {
@@ -160,4 +173,40 @@ body {
 .btn-white {
   background-color: #fff;
   color: #777;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  /* we have to specify this two property otherwise it will not show*/
+  height: 100%;
+  width: 100%;
+  /* this pseudo-elm is like a child element of the btn, so it will have same width and height */
+  border-radius: 100px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* we want it to be hidden behind the button so need to specify position, and set the position: relative on button! */
+  z-index: -1;
+  /* need to be set behind button */
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  /* if we want to make it animated need to set transition on initial state (.btn::after) */
+  opacity: 0;
+  /* to fading something out */
+}
+
+.btn-animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  /* third option is DELAY */
+  animation-fill-mode: backwards;
+  /* othwerwise the initial state will be shown first, the button will be visable first, we don't want that, so with this option the 0% state from animation will be apply at first (opacity 0 and position under the visable part)
 }
