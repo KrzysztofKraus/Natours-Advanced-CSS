@@ -1,0 +1,133 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+* {
+  /* basic reset */
+  margin: 0;
+  padding: 0;
+  /* cleaning all html elements that could have some automatically added margin or padding */
+
+  box-sizing: border-box;
+  /* powtórzyć */
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  /* every child elements of >body< inheritance font-family from here */
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  /* that's mean it's 1.7 times bigger then predefined line height */
+  color: #777;
+  padding: 30px;
+}
+
+.header {
+  height: 95vh;
+  /* 95% of the viewport */
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      #28b485
+    ),
+    url(../img/hero.jpg);
+  /* there are two background images, one is a linear gradient and the another one is hero image below that */
+  background-size: cover;
+  background-position: top;
+  /* whatever the viewport is, top of the image will be stick to the top of browser */
+  clip-path: polygon(0 0, 100% 0, 100% 75vhgit, 0 100%);
+  position: relative;
+}
+
+.logo-box {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  /* the reference to set the position of .logo-box top and left is the first parent element with position relative */
+}
+
+.logo {
+  height: 35px;
+  /* width will be set auto */
+}
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  /* powyższe względem rodzica */
+  transform: translate(-50%, -50%);
+  /* tutaj wyśrodkowanie samego elementu */
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+
+  backface-visibility: hidden;
+  /* only IF animation shakes by the end. Need to be written inside of the parent elm */
+}
+
+.heading-primary-main {
+  display: block;
+  /* span is an inline elm by default. Block elm occupy the entire width that have available and they create line breaks after and before them */
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  /* two properities required for animation to work */
+
+  animation-timing-function: ease-out;
+
+  /* animation-delay: 3s; */
+  /* animation-iteration-count: 3; */
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
+  animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* for the browser performance it's the best to only ever animate two different properties. Opacity and transform. The browsers are optimized for.  */
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
